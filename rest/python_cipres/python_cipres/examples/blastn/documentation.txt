@@ -1,0 +1,8 @@
+BlastN, created for a special application 
+
+runtime_ - Float - Maximum Hours to Run (click here for help setting this correctly)
+query_ - Primary Input File, named query.fasta
+nucleotid_db_ - Excl - Sets the database that will be used. Default = its; allowed values 
+UNITE_public_tbas, unaligned_its, unaligned_lsu, unaligned_its_lsu, unaligned_ssu, unaligned_mitssu, unaligned_rpb1, unaligned_rpb2
+
+

@@ -1,0 +1,13 @@
+PAUP_XSEDE
+
+
+infile_ = infile.nex
+
+runtime_ = Float, (default=0.5) Max run time.
+paupblock_= Switch, My data set has commands in a PAUP block (default=0)
+
+These are valid only when there is no paup block   
+set_multrees_= Excl, default=no; use multrees?
+paup_branchalg_ = Excl,  Branch Swapping Algorithm (swap), tbr (default), spr, NNI</prompt>
+setup4_ = Switch (default=1) Treat multistate taxa as uncertain
+

@@ -1,0 +1,93 @@
+
+*********************************************************************************************************************
+ssl.properties file in yourapp/sdk/src/main/resources
+*********************************************************************************************************************
+
+SSL.PROPERTIES has connection info, including: hostname, username, password or keyfile, for the ToolResources 
+(i.e. hosts) that yourapp is configured to run jobs on.   All info for a specific host is prefixed with a 
+"host alias".  In the example below, the host alias is "tscc": 
+
+tscc.host=tscc-login1.sdsc.edu
+tscc.username=web_user
+tscc.keyFile=/Users/web_user/.ssh/id_dsa
+tscc.minconn=0
+tscc.maxconn=${ssl.maxconn}
+tscc.end
+
+${ssl.maxconn} will be replaced with it's value at build time.  Default values for many properties,
+including ssl.maxconn, are specified in scigap/default/build.properties.template. 
+
+
+WHEN IS SSL.PROPERTIES USED ?
+ssl.properties is only used for file transfers with sftp and for communication with remote hosts
+via ssh.   
+
+When creating a ToolResource entry in tool_registry.cfg.txt for a remote host, you specify
+a ProcessWorker (a class that is used to submit jobs and monitor them) and a FileHandler (a class
+used to transfer files to/from the remote host).  
+
+SFTPFileHandler is the only FileHandler that uses ssl.properties.  It expects to find
+a parameter named "fileHost" set to the host alias.
+
+There are two ProcessWorkers that may use ssl.properties. SSHProcessWorker always
+uses ssl.properties. It expects a parameter named "host" set to the host alias. 
+
+SSHExecProcessWorker uses ssl.properties when it is configured to use SSHExecProcessRunner
+(but not when configured to use GsiSSHProcessRunner).  It looks for a parameter named "login", 
+set to the host alias.  SSHExecProcessWorker only works with an ssh keyfile; it won't use a 
+password.
+
+
+EXAMPLES:
+1. Consider this ToolResource for a remote cluster where jobs are run via a pbs or slurm
+scheduler.  The web application uses sftp to trasnsfer files to the cluster.  It uses
+ssh to log into the head node and submit and monitor jobs.
+
+<ToolResource id="CLUSTER" type="REMOTE_SHELL"se
+	class="org.ngbw.sdk.tool.DefaultToolResource"
+	filehandler="org.ngbw.sdk.tool.SFTPFileHandler"
+	processworker="org.ngbw.sdk.tool.SSHExecProcessWorker">
+	<Parameters>
+		<Parameter key="runner" value="org.ngbw.sdk.common.util.SSHExecProcessRunner" />
+		<Parameter key="login" value="tscc" />
+		<Parameter key="fileHost" value="tscc"/>
+		<Parameter key="workspace" value="${tscc.workspace}"/>
+		<Parameter key="rc" value="${tscc.rc}"  />
+		<Parameter key="submit" value="${tscc.submit}"  />
+		<Parameter key="check" value="${tscc.check}"  />
+		<Parameter key="cancel" value="${tscc.cancel}"  />
+		<Parameter key="coresPerNode" value="16"  />
+	</Parameters>
+</ToolResource>
+
+The value of the "login" parameter is "tscc", the host alias in ssl.properties. SSHExecProcessRunner
+uses the login parameter to look up the actual, fully qualified hostname, the username and keyfile
+in order to build an ssh command line that looks like "ssh -i keyfile user@host ...". 
+
+The value of the "fileHost" parameter is also the host alias in ssl.properties.  It's used by the
+SFTPFileHandler to configure a trilead-ssh sftp connection.
+
+2. Here's a ToolResource for a remote host that does not use a scheduler.  Instead, the
+web application opens an ssh connection to the host to submit each job and wait for it
+to complete:
+
+<ToolResource id="BillardsHost" type="REMOTE_SHELL" class="org.ngbw.sdk.tool.DefaultToolResource"
+	filehandler="org.ngbw.sdk.tool.SFTPFileHandler"
+	processworker="org.ngbw.sdk.tool.SSHProcessWorker">
+	<Parameters>
+		<Parameter key="host" value="billiards" />
+		<Parameter key="workspace" value="/projects/billiards_workspace"
+		<Parameter key="fileHost" value="billiards"  />
+	</Parameters>
+</ToolResource>
+
+Both the "host" and "fileHost" parameters are set to the host's alias in ssl.properties.
+"fileHost" is used by SFTPFileHandler and "host" is used by SSHProcessWorker.
+
+
+
+
+
+
+
+

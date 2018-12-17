@@ -1,0 +1,19 @@
+The following is a message from the application with this ID: https://cushion3.sdsc.edu/portal2.  See log files for details.
+
+Job submission error: java.lang.Exception: Error submitting job: . Traceback (most recent call last):
+  File "/projects/ps-ngbt/home/cipres/ngbw/contrib/tools/bin/test_comet_submit.py", line 208, in <module>
+    sys.exit(main())
+  File "/projects/ps-ngbt/home/cipres/ngbw/contrib/tools/bin/test_comet_submit.py", line 204, in main
+    submission = Submission(argv)
+  File "/projects/ps-ngbt/home/cipres/ngbw/contrib/tools/bin/test_comet_submit.py", line 33, in __init__
+    self.scheduler_info = lib.schedulerInfo(lib.getProperties("scheduler.conf"), self.tooltype)
+  File "/projects/ps-ngbt/home/cipres/ngbw/contrib/scripts/test_comet_lib.py", line 98, in schedulerInfo
+    "threads_per_process":int(properties.get("threads_per_process", 1)),
+ValueError: invalid literal for int() with base 10: 'AUTO'
+
+
+
+
+
+
+
