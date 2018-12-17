@@ -1,0 +1,17 @@
+To date, most applications based on the framework have used mysql, though postgres has also been
+used successfully.   With mysql you can initialize a new database by running the
+commands in sdk/scripts/database/cipres.sql.  Another way to initialize a new database,
+that should work with any database server, is to build the framework and then 
+run sdk/scripts/sdkrun org.ngbw.utils.CreateTables to automatically initialize the database. The
+utility has one optional argument, --drop, which instructs it to execute drop statements before
+creating database objects. A third way would be to run sdk/scripts/database/create_cipres_sql.sh
+to generate the necessary SQL commands, and then execute those manually. The script also
+recognizes an optional --drop argument, which instructs it to generate drop statements.
+
+How do you configure the sdk to use a particular database server?
+You need to set the correct value for the database.url property in build.properties, and set the 
+value of database.driverClass to the class name of the JDBC driver for the database server. After 
+that CreateTables will be able to query the database server for metadata, so that it can produce 
+the correct commands to initialize the database.  The specified driver is used for all
+the framework's database access, however there are a few python scripts in sdk/scripts, that
+are typically run from cron, that may only work with mysql.   

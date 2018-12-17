@@ -1,0 +1,7 @@
+The following is a message from the application with this ID: http://www.phylo.org/portal2.  See log files for details.
+
+Job submission error: java.lang.Exception: Error submitting job: Error submitting job:
+
+parse_daemon_response error 15033 Batch protocol error parse_daemon_response error -2 (null) parse_daemon_response error 15033 Batch protocol error Unable to communicate with tscc-mgr.local(10.1.1.1) protocol failure.
+qsub: cannot connect to server tscc-mgr.local (errno=15033) Batch protocol error
+

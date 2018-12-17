@@ -1,0 +1,7 @@
+The following is a message from the application with this ID: http://www.phylo.org/portal2.  See log files for details.
+
+Job submission error: java.lang.Exception: Error submitting job: . Write failed: Broken pipe
+
+
+
+

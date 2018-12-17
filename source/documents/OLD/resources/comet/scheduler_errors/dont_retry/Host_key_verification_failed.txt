@@ -1,0 +1,20 @@
+The following is a message from the application with this ID: http://www.phylo.org/portal2.  See log files for details.
+
+Job submission error: java.lang.Exception: Error submitting job: . @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is d4:12:9a:47:10:7a:f7:8f:90:6e:ee:fb:2d:b0:ce:b6.
+Please contact your system administrator.
+Add correct host key in /users/u3/portal2prod/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /users/u3/portal2prod/.ssh/known_hosts:17
+RSA host key for comet.sdsc.edu has changed and you have requested strict checking.
+Host key verification failed.
+
+
+
+
+
+
