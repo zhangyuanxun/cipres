@@ -1,8 +1,0 @@
-The following is a message from the application with this ID: http://www.phylo.org/portal2.  See log files for details.
-
-Job submission error: java.lang.Exception: Error submitting job: Error submitting job:
-
-/var/spool/torque/check.mail: line 12: /dev/tty: No such device or address
-qsub: submit filter returned an error code, aborting job submission.
-
-

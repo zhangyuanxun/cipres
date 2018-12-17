@@ -1,9 +1,0 @@
-The following is a message from the application with this ID: http://www.phylo.org/portal2.  See log files for details.
-
-Job submission error: java.lang.Exception: Error submitting job: Error submitting job:
-
-Unable to communicate with tscc-mgr.local(10.1.1.1) Cannot connect to specified server host 'tscc-mgr.local'.
-qsub: cannot connect to server tscc-mgr.local (errno=111) Connection refused
-
-
-

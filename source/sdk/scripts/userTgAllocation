@@ -1,3 +1,0 @@
-#!/bin/sh
-class=org.ngbw.utils.UserTgAllocation
-sdkrun $class "$@" 2>/dev/null

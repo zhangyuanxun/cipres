@@ -1,5 +1,0 @@
-The following is a message from the application with this ID: http://www.phylo.org/portal2.  See log files for details.
-
-Job submission error: java.lang.Exception: Error submitting job: . ssh: connect to host comet.sdsc.edu port 22: Connection timed out
-
-

@@ -1,7 +1,0 @@
-The following is a message from the application with this ID: https://cushion3.sdsc.edu/portal2.  See log files for details.
-
-Job submission error: java.lang.Exception: Error submitting job: . Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password,keyboard-interactive,hostbased).
-
-
-
-

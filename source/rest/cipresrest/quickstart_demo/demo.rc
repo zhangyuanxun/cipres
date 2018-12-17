@@ -1,7 +1,0 @@
-#!/bin/bash
-
-export URL=https://cipresrest.sdsc.edu/v1/cipresrest
-export CRA_USER=
-export PASSWORD=
-export KEY=
-

@@ -1,2 +1,0 @@
-#!/bin/sh
-mvn exec:java -Dexec.mainClass=org.ngbw.utils.StoreTaskOutput -Dexec.args="$@"

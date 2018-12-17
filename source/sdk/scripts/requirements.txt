@@ -1,2 +1,0 @@
-pymysql == 0.5
-pystache == 0.5.3
