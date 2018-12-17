@@ -1,7 +1,9 @@
 ## General
 
 # Directories #
-source/build/
+build/
+.svn/
+my_config/
 
 # Compiled Java
 *.class
