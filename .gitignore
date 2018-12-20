@@ -9,7 +9,6 @@ my_config/
 *.class
 
 # Package Files
-*.jar
 *.war
 
 # Compiled Object files
