@@ -226,17 +226,17 @@ def main(argv):
             tomcat_bin_dir = path.join(tomcat_dir, "bin")
 
             print "\nshutting down tomcat...\n"
-            # try:
-               # cipres.exec_command([path.join(tomcat_bin_dir, "shutdown.sh")])
-            # except (cipres.BuildError) as err:
-                # sys.stderr.write("%s\n" % str(err))
-                # sys.stderr.write("Continuing anyway.\n")
+            try:
+               cipres.exec_command([path.join(tomcat_bin_dir, "shutdown.sh")])
+            except (cipres.BuildError) as err:
+                sys.stderr.write("%s\n" % str(err))
+                sys.stderr.write("Continuing anyway.\n")
 
             print "\nrunning build.py scripts\n"
             run_build_scripts("deploy", exec_args, module_build_list)
 
             print "\nstarting tomcat...\n"
-            # cipres.exec_command([path.join(tomcat_bin_dir, "startup.sh")])
+            cipres.exec_command([path.join(tomcat_bin_dir, "startup.sh")])
 
         return 0
 
