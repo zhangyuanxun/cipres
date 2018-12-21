@@ -61,8 +61,7 @@ public class PerlEval
 
 		try
 		{
-			//command[0] = "piseEval";
-			command[0] = "/usr/share/tomcat/scripts/piseEval";
+			command[0] = "piseEval";
 			worker = Runtime.getRuntime().exec(command);
 			stdout = new BufferedReader(new InputStreamReader(worker.getInputStream()));
 			stderr = new BufferedReader(new InputStreamReader(worker.getErrorStream()));
