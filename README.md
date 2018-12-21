@@ -18,11 +18,11 @@ This dedicated account which starts Tomcat needs write permission to the followi
 There are some helpful permission and security tips at https://tomcat.apache.org/tomcat-7.0-doc/security-howto.html#Non-Tomcat_settings
 
 
-1.) Download a copy of the source code from our SVN repository.
+1.) Download a copy of the source code from our GitHub repository.
 
     mkdir cipres
     cd cipres
-    svn checkout https://svn.sdsc.edu/repo/scigap/trunk source
+    git clone https://github.com/zhangyuanxun/cipres.git source
 
 2.) Copy static content to a web server.
 
