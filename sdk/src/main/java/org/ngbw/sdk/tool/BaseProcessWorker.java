@@ -648,14 +648,14 @@ public abstract class BaseProcessWorker
 			m_taskLabel = m_task.getLabel();
 			m_taskCreationDate = m_task.getCreationDate().toString();
 		}
-		m_jobInfo =	"Task\\ label=" + m_taskLabel + "\n" +
-				"Task\\ ID=" + m_taskId + "\n" +
+		m_jobInfo =	"Task label=" + m_taskLabel + "\n" +
+				"Task ID=" + m_taskId + "\n" +
 				"Tool=" + m_toolID + "\n" +
-				"created\\ on=" + m_taskCreationDate + "\n" +
+				"created on=" + m_taskCreationDate + "\n" +
 				"JobHandle=" + m_jobHandle + "\n";
 		m_jobInfo += "resource=" + m_rt.getResource();
-		m_userInfo =	"User\\ ID=" + m_userID + "\n" +
-					"User\\ Name=" + m_user.getUsername() + "\n" +
+		m_userInfo =	"User ID=" + m_userID + "\n" +
+					"User Name=" + m_user.getUsername() + "\n" +
 					"email=" + m_user.getEmail() + "\n";
 		}
 	}
