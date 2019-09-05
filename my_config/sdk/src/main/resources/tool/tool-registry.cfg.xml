@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ToolRegistry>
+	<ToolResources>
+		<ToolResource id="Lewis" type="REMOTE_SHELL"
+			class="org.ngbw.sdk.tool.DefaultToolResource"
+			filehandler="org.ngbw.sdk.tool.SFTPFileHandler"
+			processworker="org.ngbw.sdk.tool.SSHExecProcessWorker">
+			<Parameters>
+				<Parameter key="runner" value="org.ngbw.sdk.common.util.SSHExecProcessRunner" />
+	            <Parameter key="login" value="${lewis.login}" />
+	            <Parameter key="fileHost" value="${lewis.fileHost}"/>
+	            <Parameter key="workspace" value="${lewis.workspace}"/>
+	            <Parameter key="rc" value="${lewis.rc}"  />
+	            <Parameter key="submit" value="${lewis.submit}"  />
+	            <Parameter key="check" value="${lewis.check}"  />
+	            <Parameter key="cancel" value="${lewis.cancel}"  />
+            	<Parameter key="coresPerNode" value="16"  />
+			</Parameters>
+		</ToolResource>
+
+		<ToolResource id="LOCALHOST" type="LOCAL_SHELL"
+			class="org.ngbw.sdk.tool.DefaultToolResource"
+			filehandler="org.ngbw.sdk.tool.LocalFileHandler"
+			processworker="org.ngbw.sdk.tool.SSHProcessWorker">
+			<Parameters>
+				<Parameter key="host" value="localhost" />
+				<Parameter key="workspace" value="${workspace}"/>
+			</Parameters>
+		</ToolResource>
+	</ToolResources>
+	
+	<ToolGroups>
+		<ToolGroup id="WEB" isdefault="1">
+			<Tool id="SLEEP"
+				name="An example of a tool running locally"
+				configfile="pisexml/sleep.xml" toolresource="LOCALHOST"
+				commandrenderer="org.ngbw.pise.commandrenderer.PiseCommandRenderer">
+				<InputParameters>
+					<InputParameter id="infile_" entityType="UNKNOWN" dataType="UNKNOWN" dataFormat="UNKNOWN" iomode="FILE"/>
+				</InputParameters>
+				<OutputParameters>
+				</OutputParameters>
+			</Tool>
+
+		 	<Tool id="MATLAB_TG"
+                name="MATLAB on Lewis"
+                configfile="pisexml/matlab_tg.xml" toolresource="Lewis"
+                commandrenderer="org.ngbw.pise.commandrenderer.PiseCommandRenderer">
+                <InputParameters>
+                        <InputParameter id="infile_" entityType="UNKNOWN" dataType="UNKNOWN" dataFormat="UNKNOWN" iomode="FILE"/>
+                </InputParameters>
+                <OutputParameters>
+                </OutputParameters>
+            </Tool>
+		</ToolGroup>
+	</ToolGroups>
+</ToolRegistry>

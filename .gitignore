@@ -3,7 +3,6 @@
 # Directories #
 build/
 .svn/
-my_config/
 
 # Compiled Java
 *.class

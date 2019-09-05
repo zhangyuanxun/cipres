@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE pise PUBLIC "pise.dtd" "pise.dtd" >
+<pise>	
+	<head>
+		<title> MATLAB R2017a on Lewis</title>
+		<version>R2017a</version>
+		<description>Running MATLAB models</description>
+		<authors>MATLAB</authors>
+		<reference> MATLAB </reference>
+		<category>Phylogeny / Alignment</category>
+	</head>
+
+	<command>matlab_tg</command>
+	
+	<parameters>
+
+		<!-- Typically the first parameter in this file is used to output the 
+		command name as the first part of the command line.
+
+		In this example, we'll be creating a command line that begins with "new_tool."
+		and will be followed by command line arguments that are specified in other parameters
+		later in the file.  Any parameters that should appear after the command line must specify 
+		a group > 0.  Anything that should appear before the command name, like input redirection, 
+		should specify group < 0.
+		-->
+		<parameter ishidden="1" type="String">
+			<name>command_name</name>
+			<attributes>
+				<format>
+					<language>perl</language>
+					<code>"matlab"</code>
+				</format>
+				<group>0</group>
+			</attributes>
+		</parameter>
+
+		<parameter type="Float" issimple="1" ismandatory="1">
+			<name>runtime</name>
+			<attributes>
+				<group>1</group>
+				<paramfile>scheduler.conf</paramfile>
+				<prompt>Maximum Hours to Run (click here for help setting this correctly)</prompt>
+				<vdef><value>0.5</value></vdef> 
+				<comment>                                                                        
+					<value>
+		                            Estimate the maximum time your job will need to run (up to 48 hrs).  Your job will be killed if it doesn't finish within the time you specify, however jobs with shorter maximum run times, especially those under .5 hrs,  are often scheduled sooner than longer jobs.
+					</value>
+				</comment>
+				<ctrls>
+				   <ctrl>
+						<message>Maximum Hours to Run must be between 0.1 - 48.0.</message>
+						<language>perl</language>
+						<code>$runtime &lt; 0.1 || $runtime &gt; 48.0</code>
+					</ctrl>
+				</ctrls>
+				<format>
+					<language>perl</language>
+					<code>"runhours=$value\\n"</code>
+				</format>
+			</attributes>
+		</parameter>
+		
+		<parameter type="String" issimple="1" ismandatory="1">
+                        <name>filename</name>
+                        <attributes>
+                                <group>1</group>
+                                <paramfile>scheduler.conf</paramfile>
+                                <prompt>Enter Main Input Matlab Filename (click here for help setting this correctly)</prompt>
+                                <vdef><value>test.m</value></vdef>
+                                <comment>
+                                        <value>
+                                            Please enter the name of the input matlab file. For e.g. "test.m".
+                                        </value>
+                                </comment>
+                                <format>
+                                        <language>perl</language>
+                                        <code>"fname=$value\\n"</code>
+                                </format>
+                        </attributes>
+                </parameter>
+
+		<parameter type="String" issimple="1">
+			<name>subdirname</name>
+			<attributes>
+				<group>1</group>				
+				<paramfile>scheduler.conf</paramfile>
+				<prompt>Enter sub-directory name (OPTIONAL - click here for help setting this correctly)</prompt>
+				<comment>
+					<value>
+						Please enter sub-directory name which contains the main file i.e. if your main file is not on top level directory. 
+					</value>
+				</comment>
+				<format>
+					<language>perl</language>
+					<code>"subdirname=$value\\n"</code>
+				</format>
+			</attributes>
+		</parameter>
+<!--
+		<parameter type="Float" issimple="1" ishidden="1">
+			<name>number_nodes</name>
+			<attributes>
+				<group>1</group>
+				<paramfile>scheduler.conf</paramfile>
+				<prompt>Enter Number of Nodes (click here for help setting this correctly)</prompt>
+				<vdef><value>1</value></vdef>
+				<comment>
+					<value>
+						Please enter the total number of nodes required to run your job on Comet. The maximum number of nodes available per job is 72. If you require more than 72 nodes please contact us at nsghelp@sdsc.edu
+					</value>
+				</comment>
+				<ctrls>
+					<ctrl>
+						<message>Maximum number of nodes available is 72</message>
+						<language>perl</language>
+						<code>$number_nodes &gt; 72</code>
+					</ctrl>
+				</ctrls>
+				<format>
+					<language>perl</language>
+					<code>
+						"nodes=$value\\n" .
+						"jobtype=mpi\\n" .
+						"mpi_processes=8\\n"
+					</code>
+				</format>
+			</attributes>
+		</parameter>
+
+
+		<parameter type="Float" issimple="1" ishidden="1">
+			<name>number_cores</name>
+			<attributes>
+				<group>1</group>
+				<paramfile>scheduler.conf</paramfile>
+				<prompt>Enter Number of Cores per Node (click here for help setting this correctly)</prompt>
+				<vdef><value>1</value></vdef>
+				<comment>
+					<value>
+						Please enter the number of cores required per node. Each node on Comet has a maximum of 24 cores.
+					</value>
+				</comment>
+				<ctrls>
+					<ctrl>
+						<message>Maximum cores per node is 24</message>
+						<language>perl</language>
+						<code>$number_cores &gt; 24</code>
+					</ctrl>
+				</ctrls>
+				<format>
+					<language>perl</language>
+					<code>
+						"threads_per_process=$value\\n"
+					</code>
+				</format>
+			</attributes>
+		</parameter>
+-->		<!-- Here we're declaring the "main input" to the tool, that is the data that the user
+		selects outside of this gui.  The workbench will take the data the user chooses and
+		put it in a file of the name you specify in the <filename> element below.  Chances
+		are, you'll want to use the <format> element to output the text that will pass that
+		file to the program.
+		
+		When using this template you must leave the <name> as "infile".
+		-->
+		<parameter type="String" issimple="1">
+                        <name>outputfilename</name>
+                        <attributes>
+                                <group>1</group>
+                                <paramfile>scheduler.conf</paramfile>
+                                <prompt>Enter name for the compressed output file created by the NSG job (OPTIONAL - click here for help setting this correctly)</prompt>
+                                <comment>
+                                        <value>
+                                                CIPRES will return all your files in a compressed format. If you would like to enter a name for the compressed output file, please specify in this box. The default file name is output, returned as output.tar.gz
+                                        </value>
+                                </comment>
+                                <format>
+                                        <language>perl</language>
+                                        <code>"outfilename=$value\\n"</code>
+                                </format>
+                        </attributes>
+                </parameter>
+		<parameter ismandatory="1" issimple="1" isinput="1" type="InFile">
+			<name>infile</name>
+			<attributes>
+				<group>-1</group>
+				<format>
+					<language>perl</language>
+					<code>"inputfile"</code>
+				</format>
+				<filenames>inputfile</filenames>
+			</attributes>
+		</parameter>
+
+
+		<!-- We also need to specify the names of the output files that the tool creates, or
+		at least those that we want returned to the user. --> 
+		<parameter type="Results">
+			<name>outputfile</name>
+			<attributes>
+				<filenames>*.tar.gz</filenames>
+			</attributes>
+		</parameter>
+
+
+		<!-- Parameters with visible controls start here -->
+
+		<!-- An example: is it protein or dna input ? -->
+
+	</parameters>
+</pise>
