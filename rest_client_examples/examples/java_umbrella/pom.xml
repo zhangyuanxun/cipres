@@ -9,7 +9,7 @@
 
 	<properties>
 		<copyright.year>2008</copyright.year>
-		<struts.version>2.3.15.1</struts.version>
+		<struts.version>2.5.26</struts.version>
 		<jstl.version>1.1.2</jstl.version>
 		<struts.menu.version>2.4.3</struts.menu.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
